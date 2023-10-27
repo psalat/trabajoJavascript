@@ -11,23 +11,65 @@ const marcas = [
 ];
 
 
-let modelosFiat = ['Uno','Punto','Linea','Toro'];
+//Modelos de cada marca, con una modificación del código podría repetir la forma de tener en cuenta errores de tipeo
+const modelosFiat = ['Uno','Punto','Linea','Toro'];
 
-let modelosReanult = ['Duster', 'Oroch', 'Master'];
+const modelosRenault = ['Duster', 'Oroch', 'Master'];
 
-let modelosVolkswagen = ['Polo', 'Virtus', 'Passat', 'Vento'];
+const modelosVolkswagen = ['Polo', 'Virtus', 'Passat', 'Vento'];
 
-let modelosChevrolet = ['Tracker','Onix','S10'];
+const modelosChevrolet = ['Tracker','Onix','S10'];
 
-let modelosFord = ['Ka', 'Ranger', 'Focus', 'Mondeo'];
+const modelosFord = ['Ka', 'Ranger', 'Focus', 'Mondeo'];
 
-let vidrios = ['Parabrisas', 'Luneta', 'Techo', 'Puerta del. Izq.', 'Puerta del. der.', 'Puerta tras. izq.', 'Puerta tras. der.', 'Aleta del. izq.', 'Aleta del. der.', 'Aleta tras. izq.', 'Aleta tras. der.'];
+const abreviaturasVidrios = {psas:'Parabrisas',lta:'Luneta', pdi: 'Puerta del. Izq.', pdd:'Puerta del. der.', pti:'Puerta tras. izq.',ptd:'Puerta tras. der.'};
 
-//let inputMarca = prompt('Ingrese la Marca del vehículo que está buscando');
+
+//Matriz de objetos de Stock
+const stock = { Fiat:
+                {
+                    Uno:{psas:5,lta:4,pdi:0,pdd:0,pti:12,ptd:3},
+                    Punto:{psas:9,lta:9,pdi:20,pdd:10,pti:1,ptd:33},
+                    Linea:{psas:2,lta:2,pdi:4,pdd:40,pti:8,ptd:0},
+                    Toro:{psas:12,lta:33,pdi:12,pdd:2,pti:1,ptd:3}
+                },
+                Renault:
+                {
+                    Duster:{psas:5,lta:4,pdi:0,pdd:0,pti:12,ptd:3},
+                    Oroch:{psas:9,lta:9,pdi:20,pdd:10,pti:1,ptd:33},
+                    Master:{psas:2,lta:2,pdi:4,pdd:40,pti:8,ptd:0}
+                },
+                Volkswagen:
+                {
+                    Polo:{psas:5,lta:4,pdi:0,pdd:0,pti:12,ptd:3},
+                    Virtus:{psas:9,lta:9,pdi:20,pdd:10,pti:1,ptd:33},
+                    Passat:{psas:2,lta:2,pdi:4,pdd:40,pti:8,ptd:0},
+                    Vento:{psas:12,lta:33,pdi:12,pdd:2,pti:1,ptd:3}
+                },
+                Chevrolet:
+                {
+                    Tracker:{psas:5,lta:4,pdi:0,pdd:0,pti:12,ptd:3},
+                    Onix:{psas:9,lta:3,pdi:20,pdd:10,pti:1,ptd:33},
+                    S10:{psas:2,lta:2,pdi:4,pdd:40,pti:8,ptd:0}
+                },
+                Ford:
+                {
+                    Ka:{psas:5,lta:4,pdi:0,pdd:0,pti:12,ptd:3},
+                    Ranger:{psas:6,lta:9,pdi:20,pdd:7,pti:1,ptd:33},
+                    Focus:{psas:2,lta:12,pdi:4,pdd:40,pti:8,ptd:0},
+                    Mondeo:{psas:12,lta:33,pdi:12,pdd:2,pti:1,ptd:3}
+                }
+                        
+}
+
+
+console.log(stock);
+
 
 let marcaElegida = '';
 
 let i = 0;
+
 while (marcaElegida == '' || marcaElegida == 'No') {
     //console.log(i);
     if (i === 0) {
@@ -40,7 +82,7 @@ while (marcaElegida == '' || marcaElegida == 'No') {
         //console.log(marcas[j]);
         marcaElegida = buscaEnErrores(marcas[j], inputMarca);
         if ( marcaElegida != 'No') {
-            console.log(marcaElegida)
+            //console.log(marcaElegida)
             break;
         }
     }
@@ -61,23 +103,23 @@ while (modeloElegido == '' || modeloElegido == 'No') {
 
     switch (marcaElegida) {
         case 'Fiat':
-            mostrarModelos (modelosFiat, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarModelos(modelosFiat, inputModelo);
             break;
 
           case 'Renault':
-            mostrarModelos (modelosReanult, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarModelos(modelosRenault, inputModelo);
             break;
         
           case 'Volkswagen':
-            mostrarModelos (modelosVolkswagen, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarModelos(modelosVolkswagen, inputModelo);
             break;
 
           case 'Chevrolet':
-            mostrarModelos (modelosChevrolet, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarModelos(modelosChevrolet, inputModelo);
             break;
 
           case 'Ford':
-            mostrarModelos (modelosFord, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarModelos(modelosFord, inputModelo);
             break;
     
         default:
@@ -108,11 +150,18 @@ function buscaModelos(arrayDeMarca, modeloIngresado) {
 }
 
 function mostrarModelos (modeloDondeBuscar, modeloBuscado) {
-  if (buscaModelos(modeloDondeBuscar, modeloBuscado) == 'No') {
-      alert('Modelo no encontrado para la marca ' + marcaElegida);
-  } else {
-      modeloElegido = buscaModelos(modeloDondeBuscar, modeloBuscado);
-      console.log (`Marca: ${marcaElegida} Modelo: ${modeloElegido}`)
-  }
+    if (buscaModelos(modeloDondeBuscar, modeloBuscado) == 'No') {
+        alert('Modelo no encontrado para la marca ' + marcaElegida);
+    } else {
+        modeloElegido = buscaModelos(modeloDondeBuscar, modeloBuscado);
+        //console.log (`Marca: ${marcaElegida} Modelo: ${modeloElegido}`);
+
+        return 'Parabrisas ' + marcaElegida + " " + modeloElegido + " :" + stock[marcaElegida][modeloElegido]['psas'] + '<br>' + 
+        'Lunetas ' + marcaElegida + " " + modeloElegido + " :" + stock[marcaElegida][modeloElegido]['lta'] + '<br>' +
+        'Puertas del. izq. ' + marcaElegida + " " + modeloElegido + " :" + stock[marcaElegida][modeloElegido]['pdi'] + '<br>' +
+        'Puertas del. der. ' + marcaElegida + " " + modeloElegido + " :" + stock[marcaElegida][modeloElegido]['pdd'] + '<br>' +
+        'Puertas tras. izq. ' + marcaElegida + " " + modeloElegido + " :" + stock[marcaElegida][modeloElegido]['pti'] + '<br>' +
+        'Puertas tras. der. ' + marcaElegida + " " + modeloElegido + " :" + stock[marcaElegida][modeloElegido]['ptd'] + '<br>';
+    }
 }
 

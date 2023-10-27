@@ -1,10 +1,15 @@
-A través del prompt, la primer búsqueda debe ser por marca de vehículo (Ford, Renault, Fiat, etc.)
+A través del prompt, la primer búsqueda debe ser por marca de vehículo (Ford, Renault, Fiat, Chevrolet, Volkswagen o Ford)
+Este ingrese admite ciertos errores de tipeo (ver en código)
 
-Al colocar la marca, mostrará una lista de todos los vidrios que se tienen en stock
+Luego preguntará el modelo dentro de esa marca (aquí hay que poner los modelos correctos, ver en código)
+Fiat = ['Uno','Punto','Linea','Toro']
+Renault = ['Duster', 'Oroch', 'Master']
+Volkswagen = ['Polo', 'Virtus', 'Passat', 'Vento']
+Chevrolet = ['Tracker','Onix','S10']
+Ford = ['Ka', 'Ranger', 'Focus', 'Mondeo']
 
-Aparecerá otro prompt que preguntará si el vidrio que busca está en la lista o quiere refinar la búsqueda por modelo
+Una vez ingresados la marca y modelos, mostrará una lista de cantidades de stock para cada tipo de vidrio
 
-Se vuelve a mostrar otra lista pero ya filtrada por marca y modelo
 
 
 

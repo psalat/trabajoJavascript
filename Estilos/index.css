@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(21, 41, 41);
+}
+
+.lista {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 40px;
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}

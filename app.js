@@ -23,21 +23,72 @@ let modelosFord = ['Ka', 'Ranger', 'Focus', 'Mondeo'];
 
 let vidrios = ['Parabrisas', 'Luneta', 'Techo', 'Puerta del. Izq.', 'Puerta del. der.', 'Puerta tras. izq.', 'Puerta tras. der.', 'Aleta del. izq.', 'Aleta del. der.', 'Aleta tras. izq.', 'Aleta tras. der.'];
 
-let inputMarca = prompt('Ingrese la Marca del vehículo que está buscando');
+//let inputMarca = prompt('Ingrese la Marca del vehículo que está buscando');
 
-let marcaElegida;
+let marcaElegida = '';
 
-for (let i = 0; i < marcas.length; i++) {
-    marcaElegida = buscaEnErrores(marcas[i], inputMarca);
-    if ( marcaElegida != 'No') {
-        console.log(marcaElegida)
-        break;
+let i = 0;
+while (marcaElegida == '' || marcaElegida == 'No') {
+    //console.log(i);
+    if (i === 0) {
+        inputMarca = prompt('Ingrese la marca de vehículo que está buscando');
+    } else {
+        inputMarca = prompt('No encontramos esa marca, ingrese nuevamente, compruebe ortografía');
+    }
+    
+    for (let j = 0; j < marcas.length; j++) {
+        //console.log(marcas[j]);
+        marcaElegida = buscaEnErrores(marcas[j], inputMarca);
+        if ( marcaElegida != 'No') {
+            console.log(marcaElegida)
+            break;
+        }
+    }
+    i++;
+}
+
+i=0;
+
+let modeloElegido = '';
+
+while (modeloElegido == '' || modeloElegido == 'No') {
+    //console.log(i);
+    if (i === 0) {
+        inputModelo = prompt('Ingrese el modelo que está buscando');
+    } else {
+        inputModelo = prompt('No encontramos ese modelo, ingrese nuevamente');
+    }
+
+    switch (marcaElegida) {
+        case 'Fiat':
+            mostrarModelos (modelosFiat, inputModelo);
+            break;
+
+          case 'Renault':
+            mostrarModelos (modelosReanult, inputModelo);
+            break;
+        
+          case 'Volkswagen':
+            mostrarModelos (modelosVolkswagen, inputModelo);
+            break;
+
+          case 'Chevrolet':
+            mostrarModelos (modelosChevrolet, inputModelo);
+            break;
+
+          case 'Ford':
+            mostrarModelos (modelosFord, inputModelo);
+            break;
+    
+        default:
+            break;
     }
 }
 
-if (marcaElegida == 'No') {
-    console.log('Marca no encontrada');
-}
+
+
+
+
 
 
 function buscaEnErrores (arrayDeError, ingreso) {
@@ -46,5 +97,22 @@ function buscaEnErrores (arrayDeError, ingreso) {
     } else {
         return 'No';
     }
+}
+
+function buscaModelos(arrayDeMarca, modeloIngresado) {
+    if (arrayDeMarca.includes(modeloIngresado)) {
+        return modeloIngresado;
+    } else {
+        return 'No';
+    }
+}
+
+function mostrarModelos (modeloDondeBuscar, modeloBuscado) {
+  if (buscaModelos(modeloDondeBuscar, modeloBuscado) == 'No') {
+      alert('Modelo no encontrado para la marca ' + marcaElegida);
+  } else {
+      modeloElegido = buscaModelos(modeloDondeBuscar, modeloBuscado);
+      console.log (`Marca: ${marcaElegida} Modelo: ${modeloElegido}`)
+  }
 }
 

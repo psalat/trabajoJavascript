@@ -73,9 +73,9 @@ let i = 0;
 while (marcaElegida == '' || marcaElegida == 'No') {
     //console.log(i);
     if (i === 0) {
-        inputMarca = prompt('Ingrese la marca de vehículo que está buscando');
+        inputMarca = prompt('Ingresá la marca de vehículo que está buscando');
     } else {
-        inputMarca = prompt('No encontramos esa marca, ingrese nuevamente, compruebe ortografía');
+        inputMarca = prompt('No encontramos esa marca, ingresá nuevamente comprobando la ortografía');
     }
     
     for (let j = 0; j < marcas.length; j++) {
@@ -103,23 +103,28 @@ while (modeloElegido == '' || modeloElegido == 'No') {
 
     switch (marcaElegida) {
         case 'Fiat':
-            document.getElementById('lista').innerHTML = mostrarModelos(modelosFiat, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarStock(modelosFiat, inputModelo);
+
             break;
 
           case 'Renault':
-            document.getElementById('lista').innerHTML = mostrarModelos(modelosRenault, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarStock(modelosRenault, inputModelo);
+
             break;
         
           case 'Volkswagen':
-            document.getElementById('lista').innerHTML = mostrarModelos(modelosVolkswagen, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarStock(modelosVolkswagen, inputModelo);
+
             break;
 
           case 'Chevrolet':
-            document.getElementById('lista').innerHTML = mostrarModelos(modelosChevrolet, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarStock(modelosChevrolet, inputModelo);
+
             break;
 
           case 'Ford':
-            document.getElementById('lista').innerHTML = mostrarModelos(modelosFord, inputModelo);
+            document.getElementById('lista').innerHTML = mostrarStock(modelosFord, inputModelo);
+
             break;
     
         default:
@@ -149,7 +154,7 @@ function buscaModelos(arrayDeMarca, modeloIngresado) {
     }
 }
 
-function mostrarModelos (modeloDondeBuscar, modeloBuscado) {
+function mostrarStock (modeloDondeBuscar, modeloBuscado) {
     if (buscaModelos(modeloDondeBuscar, modeloBuscado) == 'No') {
         alert('Modelo no encontrado para la marca ' + marcaElegida);
     } else {

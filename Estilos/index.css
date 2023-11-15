@@ -3,9 +3,41 @@ body {
 }
 
 header {
-    text-align: center;
     margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
 }
+
+.c1, .c3 {
+    width: 20%;
+}
+
+.c3 {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    padding-right: 10%;
+    cursor: pointer;
+}
+
+.logo {
+    width: 60%;
+    text-align: center;
+}
+
+.cantidad {
+    margin-left: 3px;
+    /* background-color: red; */
+    padding: 2px;
+    color:crimson;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
 
 .searchForm {
     text-align: center;
@@ -59,7 +91,7 @@ header {
 }
 
 .modelSelect {
-    width: 30%;
+    width: 35%;
     min-width: 200px;
     height: 40px;
     font-size: 20px;
@@ -73,14 +105,58 @@ header {
 }
 
 .lista {
-    width: 60%;
-    margin-left: 20%;
     margin-top: 40px;
     color: whitesmoke;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .itemDeStock {
-    color: blueviolet;
+    color: rgb(80,80,80);
+    margin: 5px;
+    /* background-color: var(--salmon); */
+    border: solid 1px var(--salmon);
+    border-radius: 4px;
+    width: 60%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.codigo {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.idsC1 {
+    width: 50%;
+}
+
+.itemDatos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.itemImagen {
+    margin-left: 50px;
+    background-color: blue;
+    height: 50px;
+    width: 80px;
+}
+
+.controles {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.AgregaACarrito {
+    height: 50px;
+    border: none;
 }

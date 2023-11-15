@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Estilos/global.css" type="text/css">
     <link rel="stylesheet" href="Estilos/index.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Hanken Grotesk">
     <title>Autoglass Store</title>
 </head>
 <body>
+    <header>
+        <img src="images/Logo.png" height="50px">
+    </header>
+    <div class="searchForm">
+        <div class="R1-searchForm">
+            <input type="text" class="searcher" id="searcher" value="Fiat"><button class="btnSearcher" id="btnSearcher">Buscar</button>
+        </div>
+        
+        <div class="R2-searchForm">
+            <select class="modelSelect" id="modelSelect">
+            </select>
+        </div>
+        
+    </div>
+    <div class="results" id="results"></div>
     <div class="lista" id="lista"></div>
     <script src="app.js"></script>
 </body>

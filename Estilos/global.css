@@ -1,0 +1,12 @@
+:root {
+    --fondo: #9BC1BC;
+    --salmon: #ed6a5a;
+    --claro: #f4f1bb;
+    --grisClaro: #e6ebe0;
+    --cyan: #36C9C6;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Hanken Grotesk';
+}

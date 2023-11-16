@@ -165,9 +165,11 @@ let marcaElegida = '';
 
 let i = 0;
 
-i=0;
 
 let modeloElegido = '';
+
+let prodsAgregadosAlCarrito = [];
+let totalCompra = 0;
 
 
 document.getElementById('btnSearcher').addEventListener("click", ()=> {
@@ -243,7 +245,9 @@ document.getElementById('modelSelect').addEventListener("change", ()=> {
 });
 
 document.getElementById('carrito').addEventListener('click',()=>{
-    alert('Ver carrito');
+    let listaCarrito = document.getElementById('listaCarrito');
+
+    listaCarrito.style.display = 'block';
 });
 
 
@@ -309,9 +313,18 @@ function agregaACarrito(codigo) {
     let cantidad = Number(document.getElementById('cantidad').innerHTML) + 1;
     document.getElementById('cantidad').innerHTML = cantidad;
 
-    if(localStorage.getItem(codigo) == null) {
-        localStorage.setItem(codigo,1);
-    } else {
-        localStorage.setItem(codigo,Number(localStorage.getItem(codigo))+1);
-    }
+    let productoEncontrado = stock.find(producto => producto.codigo == codigo);
+    
+    console.log(productoEncontrado);
+
+    prodsAgregadosAlCarrito.push(codigo);
+
+    totalCompra = totalCompra + Number(productoEncontrado.precio);
+
+    localStorage.setItem('compra',prodsAgregadosAlCarrito);
+    localStorage.setItem('totalCompra',totalCompra);
+
+    document.getElementById('listaDeCompras').innerHTML += productoEncontrado.codigo + " " + productoEncontrado.tipo + " " + productoEncontrado.marca + " " + productoEncontrado.modelo + " $" + productoEncontrado.precio + "<br>";
+
+    document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
 }

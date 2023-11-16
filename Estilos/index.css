@@ -7,6 +7,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-items: center;
+
 }
 
 .c1, .c3 {
@@ -45,6 +46,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 .R1-searchForm, .R2-searchForm {
@@ -104,6 +106,7 @@ header {
     display: none;
 }
 
+
 .lista {
     margin-top: 40px;
     color: whitesmoke;
@@ -112,6 +115,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .itemDeStock {
@@ -120,7 +124,7 @@ header {
     /* background-color: var(--salmon); */
     border: solid 1px var(--salmon);
     border-radius: 4px;
-    width: 60%;
+    width: 50%;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -159,4 +163,15 @@ header {
 .AgregaACarrito {
     height: 50px;
     border: none;
+}
+
+.listaCarrito {
+    width: 25%;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    background-color: rgba(150,150,150,.8);
+    top: 100px;
+    display: none;
+    z-index: 2;
 }

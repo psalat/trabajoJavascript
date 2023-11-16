@@ -315,14 +315,22 @@ function agregaACarrito(codigo) {
 
     let productoEncontrado = stock.find(producto => producto.codigo == codigo);
     
-    console.log(productoEncontrado);
-
-    prodsAgregadosAlCarrito.push(codigo);
-
     totalCompra = totalCompra + Number(productoEncontrado.precio);
 
-    localStorage.setItem('compra',prodsAgregadosAlCarrito);
-    localStorage.setItem('totalCompra',totalCompra);
+    if (localStorage.getItem('compra') == null){
+        prodsAgregadosAlCarrito.push(codigo);
+        localStorage.setItem('compra',JSON.stringify(prodsAgregadosAlCarrito));
+        localStorage.setItem('totalCompra',totalCompra);
+    } else {
+        prodsAgregadosAlCarrito = JSON.parse(localStorage.getItem('compra'));
+        prodsAgregadosAlCarrito.push(codigo);
+        localStorage.setItem('compra',JSON.stringify(prodsAgregadosAlCarrito));
+        localStorage.setItem('totalCompra',totalCompra);
+        console.log(localStorage.getItem('compra'));
+        console.log(localStorage.getItem('totalCompra'));
+    }
+
+    
 
     document.getElementById('listaDeCompras').innerHTML += productoEncontrado.codigo + " " + productoEncontrado.tipo + " " + productoEncontrado.marca + " " + productoEncontrado.modelo + " $" + productoEncontrado.precio + "<br>";
 

@@ -3,11 +3,12 @@ body {
 }
 
 header {
-    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 15px;
     display: flex;
     flex-direction: row;
     justify-items: center;
-
+    border-bottom: dotted 1px var(--salmon);
 }
 
 .c1, .c3 {
@@ -29,6 +30,10 @@ header {
     text-align: center;
 }
 
+.material-symbols-outlined {
+    user-select: none;
+}
+
 .cantidad {
     margin-left: 3px;
     /* background-color: red; */
@@ -42,7 +47,7 @@ header {
 
 .searchForm {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -170,8 +175,10 @@ header {
     position: fixed;
     right: 0;
     height: 100%;
-    background-color: rgba(150,150,150,.8);
+    /* background-color: rgba(150,150,150,.8); */
     top: 100px;
     display: none;
     z-index: 2;
+    padding: 6px;
+    border-left: dotted 1px grey;
 }

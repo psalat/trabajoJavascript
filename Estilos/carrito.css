@@ -7,7 +7,7 @@
 }
 
 .btnCarrito {
-    width: 20%;
+    width: 80px;
     height: 30px;
     margin: 5px;
     padding: 5px;
@@ -21,4 +21,39 @@
 .btnCarrito:hover {
     background-color: var(--grisClaro);
     color: var(--salmon);
+}
+
+.listaDeCompras {
+    display: flex;
+    flex-direction: column;
+}
+
+.renglonItemCarrito {
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 7px;
+    border-bottom: dotted 1px lightgrey;
+}
+
+.dataProductoCarrito {
+    width: 75%;
+}
+
+.eliminarItemCarrito {
+    color: red;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.eliminarItemCarrito:hover {
+    color: white;
+}
+
+
+.totalCompra {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

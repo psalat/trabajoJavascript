@@ -9,3 +9,5 @@ Al lado de la imagen está el botón de "Agregar al carrito" que agregará ese �
 Al hacer click en el carrito del header pueden verse los ítems agregados al momento
 
 Del carrito se pueden eliminar ítems individualmente
+
+Restan hacer mejoras estéticas, y cargar más imágenes (Fiat - Uno, tiene todas las imágenes)

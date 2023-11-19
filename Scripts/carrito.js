@@ -32,16 +32,7 @@ document.getElementById('cerrarCarrito').addEventListener('click',()=>{
 });
 
 
-document.getElementById('limpiarCarrito').addEventListener('click',()=>{
-    localStorage.removeItem('compra');
-    localStorage.removeItem('totalCompra');
-    document.getElementById('listaDeCompras').innerHTML = '';
-    document.getElementById('cantidad').innerHTML = '';
-    document.getElementById('totalCompra').innerHTML = '';
-    prodsAgregadosAlCarrito = [];
-    totalCompra = 0;
-
-});
+document.getElementById('limpiarCarrito').addEventListener('click',limpiaCarrito);
 
 
 function renderLineaCarrito(producto,i) {
@@ -54,7 +45,6 @@ function renderLineaCarrito(producto,i) {
                 "</div>"+
             "</div>";
 }
-
 
 function eliminaItemCarrito(i,prod){
 
@@ -97,4 +87,18 @@ function eliminaItemCarrito(i,prod){
 
     document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
 
+    if(totalCompra == 0){
+        limpiaCarrito();
+    }
+
+}
+
+function limpiaCarrito() {
+    localStorage.removeItem('compra');
+    localStorage.removeItem('totalCompra');
+    document.getElementById('listaDeCompras').innerHTML = '';
+    document.getElementById('cantidad').innerHTML = '';
+    document.getElementById('totalCompra').innerHTML = '';
+    prodsAgregadosAlCarrito = [];
+    totalCompra = 0;
 }

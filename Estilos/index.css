@@ -153,9 +153,18 @@ header {
 
 .itemImagen {
     margin-left: 50px;
-    background-color: blue;
+    /* background-color: blue; */
     height: 50px;
     width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.itemImagen:hover {
+    background-color: var(--salmon);
 }
 
 .controles {
@@ -168,6 +177,13 @@ header {
 .AgregaACarrito {
     height: 50px;
     border: none;
+    margin-left: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.AgregaACarrito:hover {
+    background-color: var(--salmon);
 }
 
 .listaCarrito {
@@ -181,4 +197,18 @@ header {
     z-index: 2;
     padding: 6px;
     border-left: dotted 1px grey;
+}
+
+.modalImagenAgrandada {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left: 0;
+    background-color: rgba(150,150,150,.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    z-index: 4;
 }

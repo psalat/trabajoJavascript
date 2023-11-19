@@ -7,7 +7,7 @@ let prodsAgregadosAlCarrito = [];
 let totalCompra = 0;
 
 document.getElementById('searcher').addEventListener('keypress',(e)=>{
-    if(e.code == 'Enter'){
+    if(e.key == 'Enter'){
         buscaMarca();
     }
 });
@@ -40,6 +40,10 @@ document.getElementById('carrito').addEventListener('click',()=>{
     
 });
 
+document.getElementById('modalImagenAgrandada').addEventListener('click',()=>{
+    document.getElementById('modalImagenAgrandada').style.display = 'none';
+});
+
 function buscaMarca() {
     let busqueda = document.getElementById('searcher').value;
 
@@ -48,7 +52,7 @@ function buscaMarca() {
     select.innerHTML = '';
 
     for (let j = 0; j < marcas.length; j++) {
-        //console.log(marcas[j]);
+
         marcaElegida = buscaEnErrores(marcas[j], busqueda);
         if ( marcaElegida != 'No') {
 
@@ -94,6 +98,7 @@ function buscaMarca() {
 
     if (marcaElegida == 'No'){
         document.getElementById('lista').innerHTML = "No encontramos la marca buscada, repetí la búsqueda por favor";
+        select.style.display = 'none';
     }
 }
 
@@ -118,7 +123,8 @@ function mostrarResultados(arrayProductos) {
         btnAgregarAlCarrito.id = `Agregar${element.codigo}`;
         btnAgregarAlCarrito.innerText = '+';
 
-    let cosa = `
+
+    let renglonItem = `
                     <div class='idsC1'>
                         <div class='codigo'>${element.codigo}</div>
                         <div class='itemDatos'>
@@ -126,26 +132,18 @@ function mostrarResultados(arrayProductos) {
                             <div>${element.tipo} ${element.marca} ${element.modelo}</div>
                         </div>
                     </div>
-                    <div class='itemImagen'>
-                        <img src='images/productos/${element.codigo}.png' width='50px'>
+                    <div class='itemImagen' id=itemImagen${element.codigo} onclick=agrandarImagen(${element.codigo})><div>
+                        <img src='images/productos/${element.codigo}.png' width='80px'></div>
                     </div>
                     <div class='controles'>
                         <button class='AgregaACarrito' id='btnAAC${element.codigo}' onclick='agregaACarrito(${element.codigo})'>Agregar al carrito</button>
                     </div>
         `;
 
-
         let itemDeStock = document.createElement('div');
         itemDeStock.className = 'itemDeStock';
         itemDeStock.id = `ids${element.codigo}`;
-        itemDeStock.innerHTML = cosa;
-
-        // itemDeStock.appendChild(btnVerImagen);
-        // itemDeStock.appendChild(btnAgregarAlCarrito);
-
-        
-
-        itemDeStock.innerHTML = cosa;
+        itemDeStock.innerHTML = renglonItem;
 
         document.getElementById('lista').append(itemDeStock);
 
@@ -176,4 +174,11 @@ function agregaACarrito(codigo) {
     document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontrado,cantidad-1);
 
     document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
+}
+
+function agrandarImagen(codigo){
+    let imagen = `<img src='images/productos/${codigo}.png' >`;
+    let modalImagen = document.getElementById('modalImagenAgrandada');
+    modalImagen.style.display = 'flex';
+    modalImagen.innerHTML = imagen;
 }

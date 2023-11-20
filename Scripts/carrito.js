@@ -31,12 +31,12 @@ document.getElementById('cerrarCarrito').addEventListener('click',()=>{
     listaCarrito.style.display = 'none';
 });
 
-
 document.getElementById('limpiarCarrito').addEventListener('click',limpiaCarrito);
+
+document.getElementById('comprarCarrito').addEventListener('click',compraCarrito);
 
 
 function renderLineaCarrito(producto,i) {
-    //let prod = JSON.stringify(producto);
     return "<div class='renglonItemCarrito' id='ric"+ i +"' codigo='"+ producto.codigo +"'>" +
                 "<div class=dataProductoCarrito>"+
                     producto.codigo + " " + producto.tipo + " " + producto.marca + " " + producto.modelo + " $" + producto.precio +
@@ -48,9 +48,7 @@ function renderLineaCarrito(producto,i) {
 
 function eliminaItemCarrito(i,prod){
 
-    let productoAEliminar = stock.find((element)=>{
-        return element.codigo == prod;
-    });
+    let productoAEliminar = encuentraProductoPorCodigo(prod);
 
     let compraEnStorage = JSON.parse(localStorage.getItem('compra'));
 
@@ -65,9 +63,7 @@ function eliminaItemCarrito(i,prod){
 
     compraEnStorage.map((element)=>{
 
-        let productoARenderizar = stock.find((element2)=>{
-            return element2.codigo == element;
-        });
+        let productoARenderizar = encuentraProductoPorCodigo(element);
 
         document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoARenderizar,j);
         j++
@@ -101,4 +97,29 @@ function limpiaCarrito() {
     document.getElementById('totalCompra').innerHTML = '';
     prodsAgregadosAlCarrito = [];
     totalCompra = 0;
+}
+
+function compraCarrito() {
+
+    if(localStorage.getItem('compra') != null){
+        let compraFinal = JSON.parse(localStorage.getItem('compra'));
+
+        let listaFinal = '';
+
+        compraFinal.map((codigo)=>{
+            listaFinal += `${encuentraProductoPorCodigo(codigo).codigo} - ${encuentraProductoPorCodigo(codigo).tipo} ${encuentraProductoPorCodigo(codigo).marca} ${encuentraProductoPorCodigo(codigo).modelo} \n`;
+        });
+        alert('Felicidades compraste:\n' + listaFinal);
+    } else {
+        alert('No tenés ningún ítem en el carrito');
+    }
+    
+}
+
+function encuentraProductoPorCodigo(codigo) {
+    let producto = stock.find((element)=>{
+        return element.codigo == codigo;
+    });
+
+    return producto;
 }

@@ -167,8 +167,6 @@ function agregaACarrito(codigo) {
         prodsAgregadosAlCarrito.push(codigo);
         localStorage.setItem('compra',JSON.stringify(prodsAgregadosAlCarrito));
         localStorage.setItem('totalCompra',totalCompra);
-        console.log(localStorage.getItem('compra'));
-        console.log(localStorage.getItem('totalCompra'));
     }
 
     document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontrado,cantidad-1);

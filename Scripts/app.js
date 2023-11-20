@@ -92,6 +92,7 @@ function buscaMarca() {
                 selectorModelos.append(opcionModelo);
             });
             
+            select.focus();
             break;
         } 
     }

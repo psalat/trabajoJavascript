@@ -109,7 +109,9 @@ function compraCarrito() {
         compraFinal.map((codigo)=>{
             listaFinal += `${encuentraProductoPorCodigo(codigo).codigo} - ${encuentraProductoPorCodigo(codigo).tipo} ${encuentraProductoPorCodigo(codigo).marca} ${encuentraProductoPorCodigo(codigo).modelo} \n`;
         });
-        alert('Felicidades compraste:\n' + listaFinal);
+        alert(`Felicidades compraste:\n${listaFinal}\nEl total es de $${totalCompra}`);
+
+        limpiaCarrito();
     } else {
         alert('No tenés ningún ítem en el carrito');
     }

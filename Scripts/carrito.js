@@ -1,25 +1,120 @@
+
 if (localStorage.getItem('compra') != null){
 
     prodsAgregadosAlCarrito = JSON.parse(localStorage.getItem('compra'));
+
+
+
+
+
+
+
+
+
+
+    resumenInicial = resumenDeCarrito(prodsAgregadosAlCarrito);
+
+    // console.log(Object.keys(resumenInicial));
+    // console.log(Object.values(resumenInicial));
+
+    renderCarritoCompleto(resumenInicial);
+ 
+
+
+/*
+    let j = 0;
+
+    let codigosEnCompra = Object.keys(resumenInicial);
+    let cantidadesEnCompra = Object.values(resumenInicial);
+
+    codigosEnCompra.forEach((codEnCo)=>{
+        console.log(codEnCo + ":" + cantidadesEnCompra[j]);
+        let canti = cantidadesEnCompra[j];
+
+        fetch('https://psalat.github.io/json-ags/stock.json')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Hubo un error en el response');
+            }
+            return response.json();
+        })
+        .then(data => {
+            stock = data;
+
+            let productoInicial = stock.find((element2)=>{
+                return element2.codigo == codEnCo;
+            });
+
+            document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoInicial,j,canti);
+
+            //en productosIniciales tengo todos los datos de los productos
+            //en cantidadesEnCompra tengo las cantidades
+            //RENDERIZAR CON ESTOS DATOS
+
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solicitud fetch:', error);
+        });
+
+        
+
+
+        j++
+    });
     
+*/
+
+
+
+
+
+
+
+
+
+
+/*
+
     let i = 0;
 
     prodsAgregadosAlCarrito.forEach(element => {
 
-        let productoEncontradoAlInicio = stock.find((element2)=>{
-            return element2.codigo == element;
+        fetch('https://psalat.github.io/json-ags/stock.json')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Hubo un error en el response');
+            }
+            return response.json();
+        })
+        .then(data => {
+            stock = data;
+
+            let productoEncontradoAlInicio = stock.find((element2)=>{
+                return element2.codigo == element;
+            });
+              
+            //document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontradoAlInicio,i,2);
+            
+            
+
+
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solicitud fetch:', error);
         });
-          
-        document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontradoAlInicio,i);
-        
+
         i++;
+        
     });
+
+
+    */
 
     totalCompra = Number(localStorage.getItem('totalCompra'));
     if (prodsAgregadosAlCarrito.length == 0) {
         document.getElementById('cantidad').innerHTML = '';
     } else {
-        document.getElementById('cantidad').innerHTML = i;
+        document.getElementById('cantidad').innerHTML = prodsAgregadosAlCarrito.length;
     }
     
     document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
@@ -35,11 +130,67 @@ document.getElementById('limpiarCarrito').addEventListener('click',limpiaCarrito
 
 document.getElementById('comprarCarrito').addEventListener('click',compraCarrito);
 
+function renderCarritoCompleto(objetoCarrito){
+    
+    let j = 0;
 
-function renderLineaCarrito(producto,i) {
+    let codigosEnCompra = Object.keys(objetoCarrito);
+    let cantidadesEnCompra = Object.values(objetoCarrito);
+
+    codigosEnCompra.forEach((codEnCo)=>{
+
+        let canti = cantidadesEnCompra[j];
+
+        fetch('https://psalat.github.io/json-ags/stock.json')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Hubo un error en el response');
+            }
+            return response.json();
+        })
+        .then(data => {
+
+            let productoInicial = data.find((element2)=>{
+                return element2.codigo == codEnCo;
+            });
+
+            
+            document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoInicial,j,canti);
+            
+
+            
+
+            //en productosIniciales tengo todos los datos de los productos
+            //en cantidadesEnCompra tengo las cantidades
+            //RENDERIZAR CON ESTOS DATOS
+
+
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solicitud fetch:', error);
+        });
+
+        
+        j++
+        
+    });
+
+    
+
+}
+
+
+function renderLineaCarrito(producto,i,q) {
+
     return "<div class='renglonItemCarrito' id='ric"+ i +"' codigo='"+ producto.codigo +"'>" +
                 "<div class=dataProductoCarrito>"+
                     producto.codigo + " " + producto.tipo + " " + producto.marca + " " + producto.modelo + " $" + producto.precio +
+                "</div>"+
+                "<div class=dataProductoCarrito>"+
+                    "Cantidad:" + q+
+                "</div>"+
+                "<div class=dataProductoCarrito>"+
+                    "subTotal: $" + q * producto.precio +
                 "</div>"+
                 "<div class=eliminarItemCarrito onclick=eliminaItemCarrito("+ i+","+ producto.codigo +")>X"+
                 "</div>"+
@@ -111,6 +262,7 @@ function compraCarrito() {
         });
         alert(`Felicidades compraste:\n${listaFinal}\nEl total es de $${totalCompra}`);
 
+
         limpiaCarrito();
     } else {
         alert('No tenés ningún ítem en el carrito');
@@ -124,4 +276,10 @@ function encuentraProductoPorCodigo(codigo) {
     });
 
     return producto;
+}
+
+
+function renderCarritoConCatidades(objetoProductos) {
+    console.log(objetoProductos);
+
 }

@@ -1,21 +1,41 @@
 body {
+    overflow: hidden;
     background-color: var(--fondo);
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 80vw 20vw;
+    grid-template-rows: minmax(20vh,20vh) minmax(20vh,20vh) minmax(60vh,60vh);
+    grid-template-areas: 
+                        'hLogo hCarrito'
+                        'searcher searcher'
+                        'results results';
 }
 
-header {
-    padding-top: 30px;
-    padding-bottom: 15px;
+
+.hLogo {
     display: flex;
     flex-direction: row;
-    justify-items: center;
+    justify-items: flex-start;
+    padding-left: 50px;
+    align-items: center;
     border-bottom: dotted 1px var(--salmon);
+
+    grid-area: hLogo;
+    /* background-color: brown; */
 }
 
-.c1, .c3 {
-    width: 20%;
+
+.hCarrito {
+    grid-area: hCarrito;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* background-color: darkslategrey; */
 }
 
 .c3 {
+    width: 20%;
     text-align: right;
     display: flex;
     flex-direction: row;
@@ -23,14 +43,6 @@ header {
     align-items: center;
     padding-right: 10%;
     cursor: pointer;
-}
-
-.logo {
-    width: 60%;
-    text-align: center;
-}
-
-.material-symbols-outlined {
     user-select: none;
 }
 
@@ -44,19 +56,22 @@ header {
 }
 
 
+.listaCarrito {
+    /* background-color: black; */
+    grid-area: listaCarrito;
+}
 
-.searchForm {
+.mSearcher {
     text-align: center;
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    /* background-color: green; */
+    grid-area: searcher;
 }
 
 .R1-searchForm, .R2-searchForm {
     text-align: center;
-    margin-top: 40px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -113,20 +128,22 @@ header {
 
 
 .lista {
-    margin-top: 40px;
+    padding-top: 40px;
     color: whitesmoke;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    grid-area: results;
+    overflow: auto;
 }
+
+
 
 .itemDeStock {
     color: rgb(80,80,80);
     margin: 5px;
-    /* background-color: var(--salmon); */
     border: solid 1px var(--salmon);
     border-radius: 4px;
     width: 50%;
@@ -187,16 +204,10 @@ header {
 }
 
 .listaCarrito {
-    width: 25%;
-    position: fixed;
-    right: 0;
-    height: 100%;
-    /* background-color: rgba(150,150,150,.8); */
-    top: 100px;
-    display: none;
-    z-index: 2;
     padding: 6px;
     border-left: dotted 1px grey;
+    grid-area: listaCarrito;
+    /* background-color: hotpink; */
 }
 
 .modalImagenAgrandada {

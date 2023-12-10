@@ -6,6 +6,7 @@ let prodsAgregadosAlCarrito = [];
 
 let totalCompra = 0;
 
+
 document.getElementById('searcher').addEventListener('keypress',(e)=>{
     if(e.key == 'Enter'){
         buscaMarca();
@@ -22,21 +23,53 @@ document.getElementById('modelSelect').addEventListener("change", ()=> {
     
     let modeloSeleccionado = document.getElementById('modelSelect').value;
 
-    let itemsEncontrados = stock.filter((element)=>{
-        return element.marca == marcaElegida & element.modelo == modeloSeleccionado;
+    fetch('https://psalat.github.io/json-ags/stock.json')
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Hubo un error en el response');
+        }
+        return response.json();
+    })
+    .then(data => {
+        stock = data;
+        let itemsEncontrados = stock.filter((element)=>{
+            return element.marca == marcaElegida & element.modelo == modeloSeleccionado;
+        });
+    
+        mostrarResultados(itemsEncontrados);
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la solicitud fetch:', error);
     });
 
-    mostrarResultados(itemsEncontrados);
+    
 
 });
 
 document.getElementById('carrito').addEventListener('click',()=>{
     let listaCarrito = document.getElementById('listaCarrito');
-    if(listaCarrito.style.display == 'block') {
-        listaCarrito.style.display = 'none';
+
+    let envista = listaCarrito.getAttribute('envista');
+    if(envista == 0){
+        listaCarrito.setAttribute('envista',1);
+        document.querySelector('body').style.gridTemplateAreas = `
+                                                                    'hLogo hCarrito'
+                                                                    'searcher searcher'
+                                                                    'results results'
+                                                                    `;
+        
     } else {
-        listaCarrito.style.display = 'block';
+        
+        listaCarrito.setAttribute('envista',0);
+        document.querySelector('body').style.gridTemplateAreas = `
+                                                                    'hLogo hCarrito'
+                                                                    'searcher listaCarrito'
+                                                                    'results listaCarrito'
+                                                                    `;
+        
+        
     }
+
     
 });
 
@@ -56,44 +89,66 @@ function buscaMarca() {
         marcaElegida = buscaEnErrores(marcas[j], busqueda);
         if ( marcaElegida != 'No') {
 
-            document.getElementById('results').innerHTML = '';
+            //document.getElementById('results').innerHTML = '';
 
-            let stockDeMarcaFiltrado = stock.filter((elemento)=>{
-                return elemento.marca == marcaElegida;
-            });
+            let stock = [];
 
-
-            let modelosDeMarcaElegidaConDuplicados = [];
-
-            stockDeMarcaFiltrado.map((elemento)=>{
-                modelosDeMarcaElegidaConDuplicados.push(elemento.modelo);
-            });
-
-            
-            let modelosSinDuplicados = [...new Set(modelosDeMarcaElegidaConDuplicados)];
-
-            console.log(modelosSinDuplicados);
+            fetch('https://psalat.github.io/json-ags/stock.json')
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Hubo un error en el response');
+                }
+                return response.json();
+            })
+            .then(data => {
+                stock = data;
 
 
-            select.style.display = 'block';
-
-
-            let selectorModelos = document.getElementById('modelSelect');
-
-            let opcionModelo = document.createElement('option');
-            opcionModelo.setAttribute('value','');
-            opcionModelo.append('Seleccioná el modelo de ' + marcaElegida);
-            selectorModelos.append(opcionModelo);
-
-            modelosSinDuplicados.forEach(element => {
+                let stockDeMarcaFiltrado = stock.filter((elemento)=>{
+                    return elemento.marca == marcaElegida;
+                });
+    
+    
+                let modelosDeMarcaElegidaConDuplicados = [];
+    
+                stockDeMarcaFiltrado.map((elemento)=>{
+                    modelosDeMarcaElegidaConDuplicados.push(elemento.modelo);
+                });
+    
+                
+                let modelosSinDuplicados = [...new Set(modelosDeMarcaElegidaConDuplicados)];
+    
+    
+                select.style.display = 'block';
+    
+    
+                let selectorModelos = document.getElementById('modelSelect');
+    
                 let opcionModelo = document.createElement('option');
-                opcionModelo.setAttribute('value',element);
-                opcionModelo.append(element);
+                opcionModelo.setAttribute('value','');
+                opcionModelo.append('Seleccioná el modelo de ' + marcaElegida);
                 selectorModelos.append(opcionModelo);
+    
+                modelosSinDuplicados.forEach(element => {
+                    let opcionModelo = document.createElement('option');
+                    opcionModelo.setAttribute('value',element);
+                    opcionModelo.append(element);
+                    selectorModelos.append(opcionModelo);
+                });
+                
+                select.focus();
+                
+
+
+
+
+            })
+            .catch(error => {
+                console.error('Hubo un problema con la solicitud fetch:', error);
             });
-            
-            select.focus();
             break;
+
+            
         } 
     }
 
@@ -156,6 +211,7 @@ function agregaACarrito(codigo) {
     document.getElementById('cantidad').innerHTML = cantidad;
 
     let productoEncontrado = stock.find(producto => producto.codigo == codigo);
+    let carritoTotal = {};
     
     totalCompra = totalCompra + Number(productoEncontrado.precio);
 
@@ -163,14 +219,20 @@ function agregaACarrito(codigo) {
         prodsAgregadosAlCarrito.push(codigo);
         localStorage.setItem('compra',JSON.stringify(prodsAgregadosAlCarrito));
         localStorage.setItem('totalCompra',totalCompra);
+
+        carritoTotal = resumenDeCarrito(prodsAgregadosAlCarrito);
     } else {
         prodsAgregadosAlCarrito = JSON.parse(localStorage.getItem('compra'));
         prodsAgregadosAlCarrito.push(codigo);
         localStorage.setItem('compra',JSON.stringify(prodsAgregadosAlCarrito));
         localStorage.setItem('totalCompra',totalCompra);
+
+        carritoTotal = resumenDeCarrito(prodsAgregadosAlCarrito);
     }
 
     document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontrado,cantidad-1);
+    renderCarritoConCatidades(carritoTotal);
+    //document.getElementById('listaDeCompras').innerHTML = renderCarritoConCatidades(carritoTotal);
 
     document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
 }
@@ -180,4 +242,23 @@ function agrandarImagen(codigo){
     let modalImagen = document.getElementById('modalImagenAgrandada');
     modalImagen.style.display = 'flex';
     modalImagen.innerHTML = imagen;
+}
+
+function resumenDeCarrito(arrayElementos) {
+    const unicos = new Set(arrayElementos);
+
+    let objetoCarritoCantidades = {};
+
+    unicos.forEach((itemUnico)=>{
+    let q = 0;
+    arrayElementos.forEach((producto)=>{
+        if(producto == itemUnico){
+        q++
+        }
+    });
+
+    objetoCarritoCantidades[itemUnico] = q;
+    });
+
+    return objetoCarritoCantidades;
 }

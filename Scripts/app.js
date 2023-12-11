@@ -47,30 +47,7 @@ document.getElementById('modelSelect').addEventListener("change", ()=> {
 });
 
 document.getElementById('carrito').addEventListener('click',()=>{
-    let listaCarrito = document.getElementById('listaCarrito');
-
-    let envista = listaCarrito.getAttribute('envista');
-    if(envista == 0){
-        listaCarrito.setAttribute('envista',1);
-        document.querySelector('body').style.gridTemplateAreas = `
-                                                                    'hLogo hCarrito'
-                                                                    'searcher searcher'
-                                                                    'results results'
-                                                                    `;
-        
-    } else {
-        
-        listaCarrito.setAttribute('envista',0);
-        document.querySelector('body').style.gridTemplateAreas = `
-                                                                    'hLogo hCarrito'
-                                                                    'searcher listaCarrito'
-                                                                    'results listaCarrito'
-                                                                    `;
-        
-        
-    }
-
-    
+    modificaLayOut();
 });
 
 document.getElementById('modalImagenAgrandada').addEventListener('click',()=>{
@@ -230,11 +207,9 @@ function agregaACarrito(codigo) {
         carritoTotal = resumenDeCarrito(prodsAgregadosAlCarrito);
     }
 
-    document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontrado,cantidad-1);
-    renderCarritoConCatidades(carritoTotal);
-    //document.getElementById('listaDeCompras').innerHTML = renderCarritoConCatidades(carritoTotal);
+    renderCarritoCompleto(carritoTotal);
 
-    document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
+    //modificaImagenCarrito(cantidad);
 }
 
 function agrandarImagen(codigo){
@@ -261,4 +236,48 @@ function resumenDeCarrito(arrayElementos) {
     });
 
     return objetoCarritoCantidades;
+}
+
+function modificaImagenCarrito(cantidad) {
+    document.getElementById('vidrios').innerHTML = '';
+    if (cantidad > 10){
+        cantidad = 10;
+    }
+
+    for (let i = 0; i < cantidad; i++) {
+        dividrio = document.createElement('div');
+        imagenVidrio = document.createElement('img');
+        imagenVidrio.src = "images/vidrioCarrito.png";
+        imagenVidrio.height = 50;
+
+        dividrio.append(imagenVidrio);
+
+        document.getElementById('vidrios').append(dividrio);
+    }
+}
+
+function modificaLayOut() {
+    let listaCarrito = document.getElementById('listaCarrito');
+
+    let envista = listaCarrito.getAttribute('envista');
+    console.log(envista);
+    if(envista == 1){
+        listaCarrito.setAttribute('envista',0);
+        document.querySelector('body').style.gridTemplateAreas = `
+                                                                    'hLogo hLogo hCarrito'
+                                                                    'sideMarcas searcher searcher'
+                                                                    'sideMarcas results results'
+                                                                    `;
+        
+    } else {
+        
+        listaCarrito.setAttribute('envista',1);
+        document.querySelector('body').style.gridTemplateAreas = `
+                                                                    'hLogo hLogo hCarrito'
+                                                                    'sideMarcas searcher listaCarrito'
+                                                                    'sideMarcas results listaCarrito'
+                                                                    `;
+        
+        
+    }
 }

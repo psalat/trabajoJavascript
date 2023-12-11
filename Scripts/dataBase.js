@@ -9,7 +9,7 @@ const marcas = [
     ['Honda','honda','onda',]
 ];
 
-let stock = [];
+// let stock = [];
 
 // fetch('https://psalat.github.io/json-ags/stock.json')
 //   .then(response => {
@@ -26,8 +26,8 @@ let stock = [];
 //   });
 
 
-
-/*const stock = [
+/*
+const stock = [
                 {codigo:10040,marca:'Fiat',modelo:'Uno',tipo:'Parabrisas',precio:13622,stock:7},
                 {codigo:2282,marca:'Fiat',modelo:'Uno',tipo:'Puerta del. Izq.',precio:13803,stock:12},
                 {codigo:2451,marca:'Fiat',modelo:'Uno',tipo:'Puerta del. Der.',precio:14127,stock:4},
@@ -173,4 +173,5 @@ let stock = [];
                 {codigo:1373,marca:'Ford',modelo:'F150',tipo:'Puerta tras. Der.',precio:10370,stock:5},
                 {codigo:2986,marca:'Ford',modelo:'F150',tipo:'Luneta',precio:11843,stock:7}    
                 ];
-                */
+*/
+                

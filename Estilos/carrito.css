@@ -4,10 +4,11 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    
 }
 
 .btnCarrito {
-    width: 80px;
+    width: 120px;
     height: 30px;
     margin: 5px;
     padding: 5px;
@@ -16,6 +17,7 @@
     cursor: pointer;
     background-color: var(--salmon);
     color: var(--grisClaro);
+    box-shadow: 8px 8px 8px gray;
 }
 
 .btnCarrito:hover {

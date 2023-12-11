@@ -3,16 +3,19 @@ body {
     background-color: var(--fondo);
     height: 100vh;
     display: grid;
-    grid-template-columns: 80vw 20vw;
-    grid-template-rows: minmax(20vh,20vh) minmax(20vh,20vh) minmax(60vh,60vh);
+    grid-template-columns: 10vw 60vw 30vw;
+    grid-template-rows: minmax(10vh,10vh) minmax(20vh,20vh) minmax(70vh,70vh);
     grid-template-areas: 
-                        'hLogo hCarrito'
-                        'searcher searcher'
-                        'results results';
+                        'hLogo hLogo hCarrito'
+                        'sideMarcas searcher searcher'
+                        'sideMarcas results results';
+    /* transition: 0.5s ease-in-out; */
+    
 }
 
 
 .hLogo {
+    background-color: var(--fondo2);
     display: flex;
     flex-direction: row;
     justify-items: flex-start;
@@ -26,10 +29,13 @@ body {
 
 
 .hCarrito {
+    background-color: var(--fondo2);
     grid-area: hCarrito;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: dotted 1px var(--salmon);
+    
 
     /* background-color: darkslategrey; */
 }
@@ -46,6 +52,11 @@ body {
     user-select: none;
 }
 
+#vidrios {
+    display: flex;
+    flex-direction: row;
+}
+
 .cantidad {
     margin-left: 3px;
     /* background-color: red; */
@@ -59,6 +70,7 @@ body {
 .listaCarrito {
     /* background-color: black; */
     grid-area: listaCarrito;
+    overflow: auto;
 }
 
 .mSearcher {
@@ -82,8 +94,8 @@ body {
 }
 
 .searcher {
-    width: 30%;
-    min-width: 200px;
+    width: 450px;
+    /* min-width: 300px; */
     height: 50px;
     font-size: 30px;
     text-align: center;
@@ -92,6 +104,7 @@ body {
     border-radius: 4px;
     border: none;
     padding: 5px;
+    box-shadow: 8px 8px 8px gray;
 }
 
 .btnSearcher {
@@ -105,6 +118,7 @@ body {
     padding: 5px;
     margin-left: 10px;
     cursor: pointer;
+    box-shadow: 8px 8px 8px gray;
 }
 
 .btnSearcher:hover {
@@ -113,8 +127,8 @@ body {
 }
 
 .modelSelect {
-    width: 35%;
-    min-width: 200px;
+    width: 515px;
+    /* min-width: 365px; */
     height: 40px;
     font-size: 20px;
     /* text-align: center; */
@@ -124,6 +138,12 @@ body {
     border: none;
     padding: 5px;
     display: none;
+    box-shadow: 8px 8px 8px gray;
+}
+
+.sideMarcas {
+    background-color: var(--fondo2);
+    grid-area: sideMarcas;
 }
 
 
@@ -208,6 +228,7 @@ body {
     border-left: dotted 1px grey;
     grid-area: listaCarrito;
     /* background-color: hotpink; */
+    background-color: var(--fondo2);
 }
 
 .modalImagenAgrandada {

@@ -3,112 +3,13 @@ if (localStorage.getItem('compra') != null){
 
     prodsAgregadosAlCarrito = JSON.parse(localStorage.getItem('compra'));
 
-
-
-
-
-
-
-
-
-
     resumenInicial = resumenDeCarrito(prodsAgregadosAlCarrito);
 
-    // console.log(Object.keys(resumenInicial));
-    // console.log(Object.values(resumenInicial));
 
     renderCarritoCompleto(resumenInicial);
+
+    modificaImagenCarrito(prodsAgregadosAlCarrito.length);
  
-
-
-/*
-    let j = 0;
-
-    let codigosEnCompra = Object.keys(resumenInicial);
-    let cantidadesEnCompra = Object.values(resumenInicial);
-
-    codigosEnCompra.forEach((codEnCo)=>{
-        console.log(codEnCo + ":" + cantidadesEnCompra[j]);
-        let canti = cantidadesEnCompra[j];
-
-        fetch('https://psalat.github.io/json-ags/stock.json')
-        .then(response => {
-            if (!response.ok) {
-            throw new Error('Hubo un error en el response');
-            }
-            return response.json();
-        })
-        .then(data => {
-            stock = data;
-
-            let productoInicial = stock.find((element2)=>{
-                return element2.codigo == codEnCo;
-            });
-
-            document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoInicial,j,canti);
-
-            //en productosIniciales tengo todos los datos de los productos
-            //en cantidadesEnCompra tengo las cantidades
-            //RENDERIZAR CON ESTOS DATOS
-
-        })
-        .catch(error => {
-            console.error('Hubo un problema con la solicitud fetch:', error);
-        });
-
-        
-
-
-        j++
-    });
-    
-*/
-
-
-
-
-
-
-
-
-
-
-/*
-
-    let i = 0;
-
-    prodsAgregadosAlCarrito.forEach(element => {
-
-        fetch('https://psalat.github.io/json-ags/stock.json')
-        .then(response => {
-            if (!response.ok) {
-            throw new Error('Hubo un error en el response');
-            }
-            return response.json();
-        })
-        .then(data => {
-            stock = data;
-
-            let productoEncontradoAlInicio = stock.find((element2)=>{
-                return element2.codigo == element;
-            });
-              
-            //document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoEncontradoAlInicio,i,2);
-            
-            
-
-
-        })
-        .catch(error => {
-            console.error('Hubo un problema con la solicitud fetch:', error);
-        });
-
-        i++;
-        
-    });
-
-
-    */
 
     totalCompra = Number(localStorage.getItem('totalCompra'));
     if (prodsAgregadosAlCarrito.length == 0) {
@@ -117,13 +18,12 @@ if (localStorage.getItem('compra') != null){
         document.getElementById('cantidad').innerHTML = prodsAgregadosAlCarrito.length;
     }
     
-    document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
 }
 
 document.getElementById('cerrarCarrito').addEventListener('click',()=>{
-    let listaCarrito = document.getElementById('listaCarrito');
 
-    listaCarrito.style.display = 'none';
+    modificaLayOut();
+
 });
 
 document.getElementById('limpiarCarrito').addEventListener('click',limpiaCarrito);
@@ -131,16 +31,39 @@ document.getElementById('limpiarCarrito').addEventListener('click',limpiaCarrito
 document.getElementById('comprarCarrito').addEventListener('click',compraCarrito);
 
 function renderCarritoCompleto(objetoCarrito){
-    
+    let i = 0;
     let j = 0;
-
+    document.getElementById('listaDeCompras').innerHTML = '';
     let codigosEnCompra = Object.keys(objetoCarrito);
     let cantidadesEnCompra = Object.values(objetoCarrito);
+    let totalCompra = 0;
+    let cantidadesAcumuladas = 0;
+
+    if(codigosEnCompra.length == 0){
+        limpiaCarrito();
+        modificaImagenCarrito(0);
+    }
 
     codigosEnCompra.forEach((codEnCo)=>{
 
-        let canti = cantidadesEnCompra[j];
+        let canti = cantidadesEnCompra[i];
 
+
+//////////////
+        // let productoInicial = stock.find((element2)=>{
+        //     return element2.codigo == codEnCo;
+        // });
+
+        // let linea = renderLineaCarrito(productoInicial,j,canti);
+            
+        //     totalCompra += Number(linea[1]);
+        //     document.getElementById('listaDeCompras').innerHTML += linea[0];
+        //     document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
+        //     j++
+////////////////
+
+
+///////////////
         fetch('https://psalat.github.io/json-ags/stock.json')
         .then(response => {
             if (!response.ok) {
@@ -154,24 +77,26 @@ function renderCarritoCompleto(objetoCarrito){
                 return element2.codigo == codEnCo;
             });
 
+            let linea = renderLineaCarrito(productoInicial,j,canti);
             
-            document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoInicial,j,canti);
-            
-
-            
-
-            //en productosIniciales tengo todos los datos de los productos
-            //en cantidadesEnCompra tengo las cantidades
-            //RENDERIZAR CON ESTOS DATOS
-
+            totalCompra += Number(linea[1]);
+            cantidadesAcumuladas += canti;
+            document.getElementById('listaDeCompras').innerHTML += linea[0];
+            document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
+            document.getElementById('cantidad').innerHTML = cantidadesAcumuladas;
+            modificaImagenCarrito(cantidadesAcumuladas);
+            j++
 
         })
         .catch(error => {
             console.error('Hubo un problema con la solicitud fetch:', error);
         });
+///////////////////////////
 
+
+        i++;
         
-        j++
+        
         
     });
 
@@ -179,65 +104,67 @@ function renderCarritoCompleto(objetoCarrito){
 
 }
 
-
 function renderLineaCarrito(producto,i,q) {
-
-    return "<div class='renglonItemCarrito' id='ric"+ i +"' codigo='"+ producto.codigo +"'>" +
+    let linea = [];
+    linea[0] = "<div class='renglonItemCarrito' id='ric"+ i +"' codigo='"+ producto.codigo +"'>" +
                 "<div class=dataProductoCarrito>"+
                     producto.codigo + " " + producto.tipo + " " + producto.marca + " " + producto.modelo + " $" + producto.precio +
                 "</div>"+
                 "<div class=dataProductoCarrito>"+
                     "Cantidad:" + q+
                 "</div>"+
-                "<div class=dataProductoCarrito>"+
+                "<div class=dataProductoCarrito id=st"+i+">"+
                     "subTotal: $" + q * producto.precio +
                 "</div>"+
-                "<div class=eliminarItemCarrito onclick=eliminaItemCarrito("+ i+","+ producto.codigo +")>X"+
+                "<div class=eliminarItemCarrito onclick=EliminaUnaUnidad("+ producto.codigo +")>-1"+
+                "</div>"+
+                "<div class=eliminarItemCarrito onclick=eliminaItemCarrito("+ producto.codigo +")>X"+
                 "</div>"+
             "</div>";
+        
+    linea[1] = q * producto.precio;
+
+    return linea;
 }
 
-function eliminaItemCarrito(i,prod){
-
-    let productoAEliminar = encuentraProductoPorCodigo(prod);
+function eliminaItemCarrito(prod){
 
     let compraEnStorage = JSON.parse(localStorage.getItem('compra'));
 
-    compraEnStorage.splice(i,1);
+    let indiceAEliminar = compraEnStorage.indexOf(prod);
+
+    while (indiceAEliminar != -1) {
+        indiceAEliminar = compraEnStorage.indexOf(prod);
+        if(indiceAEliminar != -1){
+          compraEnStorage.splice(compraEnStorage.indexOf(prod),1);
+        }
+      }
 
     localStorage.setItem('compra',JSON.stringify(compraEnStorage));
 
+    let nuevoCarrito = resumenDeCarrito(compraEnStorage);
 
-    document.getElementById('listaDeCompras').innerHTML = '';
+    renderCarritoCompleto(nuevoCarrito);
 
-    let j = 0;
+}
 
-    compraEnStorage.map((element)=>{
+function EliminaUnaUnidad(prod){
+    let compraEnStorage = JSON.parse(localStorage.getItem('compra'));
 
-        let productoARenderizar = encuentraProductoPorCodigo(element);
+    let indiceAEliminar = compraEnStorage.indexOf(prod);
 
-        document.getElementById('listaDeCompras').innerHTML += renderLineaCarrito(productoARenderizar,j);
-        j++
-    });
-
-    totalCompra = totalCompra - Number(productoAEliminar.precio);
-    
-    localStorage.setItem('totalCompra',totalCompra);
-
-    let nuevaCantidadEnCarrito = Number(document.getElementById('cantidad').innerHTML) - 1;
-
-    if(nuevaCantidadEnCarrito == 0){
-        document.getElementById('cantidad').innerHTML = '';
+    if(indiceAEliminar != -1){
+    compraEnStorage.splice(compraEnStorage.indexOf(prod),1);
+    console.log("carro con eliminacion "+compraEnStorage);
     } else {
-        document.getElementById('cantidad').innerHTML = nuevaCantidadEnCarrito;
+    console.log("No se eliminó ningún elemento "+compraEnStorage);
     }
 
-    document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
+    localStorage.setItem('compra',JSON.stringify(compraEnStorage));
 
-    if(totalCompra == 0){
-        limpiaCarrito();
-    }
+    let nuevoCarrito = resumenDeCarrito(compraEnStorage);
 
+    renderCarritoCompleto(nuevoCarrito);
 }
 
 function limpiaCarrito() {
@@ -279,7 +206,39 @@ function encuentraProductoPorCodigo(codigo) {
 }
 
 
-function renderCarritoConCatidades(objetoProductos) {
-    console.log(objetoProductos);
 
+
+
+
+
+
+
+
+
+
+/*
+
+let codigoAEliminar = 10080;
+let indiceAEliminar = carro.indexOf(codigoAEliminar);
+
+
+//Eliminación de una cantidad:
+
+indiceAEliminar = carro.indexOf(codigoAEliminar);
+if(indiceAEliminar != -1){
+  carro.splice(carro.indexOf(codigoAEliminar),1);
+  console.log("carro con eliminacion "+carro);
+} else {
+  console.log("No se eliminó ningún elemento "+carro);
 }
+
+
+//Eliminación de todos los ítems
+while (indiceAEliminar != -1) {
+  indiceAEliminar = carro.indexOf(codigoAEliminar);
+  if(indiceAEliminar != -1){
+    carro.splice(carro.indexOf(codigoAEliminar),1);
+  }
+}
+
+*/

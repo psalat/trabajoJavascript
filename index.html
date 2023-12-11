@@ -3,27 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="Estilos/global.css" type="text/css">
     <link rel="stylesheet" href="Estilos/index.css" type="text/css">
     <link rel="stylesheet" href="Estilos/carrito.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Hanken Grotesk">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>AGS</title>
+    <title>AutoGlass Store</title>
 </head>
 <body id="body">
 
         <div class="hLogo" id="hLogo">
 
             <div class="logo">
-                <img src="images/Logo.png" height="35px">
+                <img src="images/Logo2.png" height="65px">
             </div>
 
         </div>
+
+
+        
         <div class="hCarrito" id="hCarrito">
             <div class="c3" id="carrito">
-                <span class="material-symbols-outlined">shopping_cart</span>
+                <div class="carritoInicio"><img src="images/inicioCarrito.png" height="50px"></div>
+                <div class="carritoInicio" id="vidrios"></div>
+                <div class="carritoInicio"><img src="images/finCarrito.png" height="50px"></div>
                 <span class="cantidad" id="cantidad"></span>
             </div>
+            
         </div>
 
 
@@ -38,7 +45,7 @@
             </div>
         <div class="mSearcher" id="mSearcher">
             <div class="R1-searchForm">
-                <input type="text" class="searcher" id="searcher"><button class="btnSearcher" id="btnSearcher">Buscar</button>
+                <input type="text" class="searcher" id="searcher" title="Ingresá la marca de vehículo que buscás"><button class="btnSearcher" id="btnSearcher">Buscar</button>
             </div>
             
             <div class="R2-searchForm">
@@ -46,8 +53,9 @@
                 </select>
             </div>
         </div>
+        <div class="sideMarcas">Fiat<br>Renault<br></div>
         <div class="lista" id="lista"></div>
-        <div class="modalImagenAgrandada" id="modalImagenAgrandada">    
+        <div class="modalImagenAgrandada" id="modalImagenAgrandada">
         </div>
 
 

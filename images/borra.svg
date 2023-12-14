@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="7.9374995mm"
+   height="7.9374995mm"
+   viewBox="0 0 7.9374996 7.9374995"
+   version="1.1"
+   id="svg249"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="borra.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview251"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="5.7299663"
+     inkscape:cx="-22.513221"
+     inkscape:cy="31.326537"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs246" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-112.17906,-115.34734)">
+    <polyline
+       class="fil0 str0"
+       points="118.91,161.86 83.08,126.03 62.28,146.83 98.11,182.66 62.28,218.49 83.08,239.3 118.91,203.47 154.74,239.3 175.55,218.49 139.72,182.66 175.55,146.83 154.74,126.03 118.91,161.86 154.74,126.03 "
+       id="polyline564"
+       style="clip-rule:evenodd;fill:#ff0000;fill-rule:evenodd;stroke:none;stroke-width:22.3698;stroke-linejoin:bevel;stroke-miterlimit:22.9256;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.07007592,0,0,0.07007592,107.81473,106.51567)" />
+  </g>
+</svg>

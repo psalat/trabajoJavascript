@@ -1,29 +1,31 @@
 //Array de arrays, la posición 0 de cada subarray es el nombre de la marca correcta, los demás son posibles errores de tipeo
 
 const marcas = [
-    ['Fiat', 'Fia','fia', 'Diat','Giat','fiat','diat','giat'],
-    ['Renault','renault','ren','Ren','Renol','renol','reno','Reno','Renaut','renaut','renaul','renau','Renaul','Renau'],
-    ['Volkswagen','volkswagen','Volfagen','volfagen','Voluagen','voluagen','Volswagen','volswagen','Volkswaguen','volkswaguen','volk','Volk','volks','Volks'],
-    ['Chevrolet','chevrolet','Chebrolet','chebrolet','Chevrole','chevrole','Chev','chev'],
-    ['Ford','ford','For','for'],
-    ['Honda','honda','onda',]
+    ['Fiat', 'fiat', 'fia','fia', 'diat','giat'],
+    ['Renault','renault','ren','renol','reno','renaut','renaul','renau'],
+    ['Volkswagen','volkswagen','volfagen','voluagen','volswagen','volkswaguen','volk','volks'],
+    ['Chevrolet','chevrolet','chebrolet','chevrole','chev'],
+    ['Ford','ford','for'],
+    ['Honda','honda','onda',],
+    ['Baic','baic'],
+    ['Toyota','toyota','toyo']
 ];
 
-// let stock = [];
+let stock = [];
 
-// fetch('https://psalat.github.io/json-ags/stock.json')
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error('Hubo un error en el response');
-//     }
-//     return response.json();
-//   })
-//   .then(data => {
-//     stock = data;
-//   })
-//   .catch(error => {
-//     console.error('Hubo un problema con la solicitud fetch:', error);
-//   });
+fetch('https://psalat.github.io/json-ags/stockSimple.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Hubo un error en la comunicación con la base de datos, intentá nuevamente más tarde');
+    }
+    return response.json();
+  })
+  .then(data => {
+    stock = data;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
 
 /*

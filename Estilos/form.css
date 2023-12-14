@@ -1,0 +1,78 @@
+.formularioTarjeta {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+    border: solid 1px var(--salmon);
+    border-radius: 10px;
+}
+
+.RForm {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Hanken Grotesk';
+    margin-bottom: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+
+.label {
+    font-size: 13px;
+    color: rgb(50,50,50);
+    padding-left: 10px;
+}
+
+.inputForm {
+    border: none;
+    border-radius: 6px;
+    width: 300px;
+    font-size: 25px;
+    height: 60px;
+}
+
+.numTarj {
+    padding-left: 10px;
+}
+
+.DNI {
+    text-align: center;
+}
+
+.venc {
+    width: 150px;
+    text-align: center;
+}
+
+.btnCompra {
+    height: 40px;
+    width: 100%;
+    background-color: var(--salmon);
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.btnCompra:hover {
+    background-color: white;
+    color: var(--salmon);
+    cursor: pointer;
+}
+
+.btnCerrar {
+    height: 40px;
+    width: 100%;
+    background-color: grey;
+    color: whitesmoke;
+}
+
+.btnCerrar:hover {
+    background-color: white;
+    color: var(--salmon);
+    cursor: pointer;
+}
+

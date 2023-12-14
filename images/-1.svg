@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="7.9374962mm"
+   height="7.1177301mm"
+   viewBox="0 0 7.9374963 7.1177301"
+   version="1.1"
+   id="svg249"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs246" />
+  <g
+     id="layer1"
+     transform="translate(-125.40773,-112.01562)">
+    <path
+       class="fil0 str0"
+       d="m 131.37422,119.13335 h 1.97101 v -7.11773 h -1.61316 c -0.4662,0.96163 -1.35226,1.65451 -2.398,1.87549 l 7.1e-4,1.59321 c 0.73922,-0.20459 1.43139,-0.54889 2.04087,-1.01509 v 4.66412"
+       id="path574"
+       style="clip-rule:evenodd;fill:#ff6600;fill-rule:evenodd;stroke:none;stroke-width:1.56758;stroke-linejoin:bevel;stroke-miterlimit:22.9256;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" />
+    <polygon
+       class="fil0 str0"
+       points="436.12,173.12 436.12,189.46 481.88,189.46 481.88,173.12 "
+       id="polygon576"
+       style="clip-rule:evenodd;fill:#ff6600;fill-rule:evenodd;stroke:none;stroke-width:21.9906;stroke-linejoin:bevel;stroke-miterlimit:22.9256;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.07128424,0,0,0.07128424,94.319251,102.8114)" />
+  </g>
+</svg>

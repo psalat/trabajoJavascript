@@ -23,7 +23,7 @@ document.getElementById('modelSelect').addEventListener("change", ()=> {
     
     let modeloSeleccionado = document.getElementById('modelSelect').value;
 
-    fetch('https://psalat.github.io/json-ags/stock.json')
+    fetch('https://psalat.github.io/json-ags/stockSimple.json')
     .then(response => {
         if (!response.ok) {
         throw new Error('Hubo un error en el response');
@@ -50,14 +50,16 @@ document.getElementById('carrito').addEventListener('click',()=>{
     modificaLayOut();
 });
 
-document.getElementById('modalImagenAgrandada').addEventListener('click',()=>{
-    document.getElementById('modalImagenAgrandada').style.display = 'none';
-});
+document.getElementById('modal').addEventListener('click',ocultaModal);
+
+
 
 function buscaMarca() {
     let busqueda = document.getElementById('searcher').value;
 
     let select = document.getElementById('modelSelect');
+
+    busqueda = busqueda.toLowerCase();
 
     select.innerHTML = '';
 
@@ -70,7 +72,7 @@ function buscaMarca() {
 
             let stock = [];
 
-            fetch('https://psalat.github.io/json-ags/stock.json')
+            fetch('https://psalat.github.io/json-ags/stock'+marcaElegida+'.json')
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Hubo un error en el response');
@@ -130,8 +132,14 @@ function buscaMarca() {
     }
 
     if (marcaElegida == 'No'){
-        document.getElementById('lista').innerHTML = "No encontramos la marca buscada, repetí la búsqueda por favor";
+        //document.getElementById('lista').innerHTML = "No encontramos la marca buscada, repetí la búsqueda por favor";
         select.style.display = 'none';
+        Swal.fire({
+                title: `No encontramos la marca que buscás`,
+                text: `Realizá nuevamente la búsqueda`,
+                icon: "warning"
+              })
+
     }
 }
 
@@ -209,12 +217,11 @@ function agregaACarrito(codigo) {
 
     renderCarritoCompleto(carritoTotal);
 
-    //modificaImagenCarrito(cantidad);
 }
 
 function agrandarImagen(codigo){
     let imagen = `<img src='images/productos/${codigo}.png' >`;
-    let modalImagen = document.getElementById('modalImagenAgrandada');
+    let modalImagen = document.getElementById('modal');
     modalImagen.style.display = 'flex';
     modalImagen.innerHTML = imagen;
 }
@@ -280,4 +287,8 @@ function modificaLayOut() {
         
         
     }
+}
+
+function ocultaModal() {
+    document.getElementById('modal').style.display = 'none';
 }

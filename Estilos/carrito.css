@@ -31,6 +31,7 @@
 }
 
 .renglonItemCarrito {
+    width: 100%;
     font-size: 14px;
     display: flex;
     flex-direction: row;
@@ -39,17 +40,53 @@
     border-bottom: dotted 1px lightgrey;
 }
 
-.dataProductoCarrito {
-    width: 75%;
+.rcEnc {
+    color: whitesmoke;
+    text-align: center;
 }
 
-.eliminarItemCarrito {
+.codigoProductoCarrito{
+    width: 10%;
+    padding-left: 2px;
+}
+
+.descProductoCarrito {
+    width: 40%;
+    padding-left: 2px;
+}
+
+.precioUnitProductoCarrito {
+    width: 15%;
+    text-align: center;
+}
+
+.cantidadProductoCarrito {
+    width: 5%;
+    text-align: center;
+}
+
+.subTotalProductoCarrito {
+    width: 15%;
+    text-align: center;
+}
+
+.eliminarUnidadCarrito {
+    width: 5%;
+    text-align: center;
     color: red;
     cursor: pointer;
     font-weight: bolder;
 }
 
-.eliminarItemCarrito:hover {
+.eliminarItemCarrito {
+    width: 5%;
+    text-align: center;
+    color: red;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.eliminarItemCarrito:hover, .eliminarUnidadCarrito:hover {
     color: white;
 }
 

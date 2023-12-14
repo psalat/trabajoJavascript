@@ -4,13 +4,11 @@ body {
     height: 100vh;
     display: grid;
     grid-template-columns: 10vw 60vw 30vw;
-    grid-template-rows: minmax(10vh,10vh) minmax(20vh,20vh) minmax(70vh,70vh);
+    grid-template-rows: minmax(70px,10vh) minmax(150px,20vh) minmax(70vh,70vh);
     grid-template-areas: 
                         'hLogo hLogo hCarrito'
                         'sideMarcas searcher searcher'
-                        'sideMarcas results results';
-    /* transition: 0.5s ease-in-out; */
-    
+                        'sideMarcas results results';    
 }
 
 
@@ -19,7 +17,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-items: flex-start;
-    padding-left: 50px;
+    padding-left: 120px;
     align-items: center;
     border-bottom: dotted 1px var(--salmon);
 
@@ -157,6 +155,7 @@ body {
     align-items: center;
     grid-area: results;
     overflow: auto;
+    padding-bottom: 60px;
 }
 
 
@@ -231,7 +230,7 @@ body {
     background-color: var(--fondo2);
 }
 
-.modalImagenAgrandada {
+.modal {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -239,6 +238,7 @@ body {
     left: 0;
     background-color: rgba(150,150,150,.9);
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 20px;

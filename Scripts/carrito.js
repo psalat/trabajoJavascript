@@ -60,21 +60,6 @@ function renderCarritoCompleto(objetoCarrito){
         let canti = cantidadesEnCompra[i];
 
 
-//////////////
-        // let productoInicial = stock.find((element2)=>{
-        //     return element2.codigo == codEnCo;
-        // });
-
-        // let linea = renderLineaCarrito(productoInicial,j,canti);
-            
-        //     totalCompra += Number(linea[1]);
-        //     document.getElementById('listaDeCompras').innerHTML += linea[0];
-        //     document.getElementById('totalCompra').innerHTML = 'Total de Compra: $' + totalCompra;
-        //     j++
-////////////////
-
-
-///////////////
         fetch('https://psalat.github.io/json-ags/stockSimple.json')
         .then(response => {
             if (!response.ok) {
@@ -102,11 +87,9 @@ function renderCarritoCompleto(objetoCarrito){
         .catch(error => {
             console.error('Hubo un problema con la solicitud fetch:', error);
         });
-///////////////////////////
 
 
         i++;
-        
         
         
     });
@@ -199,26 +182,7 @@ function limpiaCarrito() {
 function compraCarrito() {
 
     if(localStorage.getItem('compra') != null){
-        // let compraFinal = JSON.parse(localStorage.getItem('compra'));
 
-        // let listaFinal = '';
-
-        // compraFinal.map((codigo)=>{
-        //     listaFinal += `${encuentraProductoPorCodigo(codigo).codigo} - ${encuentraProductoPorCodigo(codigo).tipo} ${encuentraProductoPorCodigo(codigo).marca} ${encuentraProductoPorCodigo(codigo).modelo} \n`;
-        // });
-        // Swal.fire({
-        //     title: `Felicidades compraste:\n${listaFinal}`,
-        //     text: `El total es de $${totalCompra}`,
-        //     icon: "success"
-        //   });
-        
-        // document.getElementById('modalFormTarjeta').style.display = 'flex';
-
-
-        // limpiaCarrito();
-
-
-        //let imagen = `<img src='images/productos/${codigo}.png' >`;
         let modal = document.getElementById('modal');
         modal.innerHTML = '';
         modal.style.display = 'flex';

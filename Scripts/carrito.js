@@ -94,8 +94,6 @@ function renderCarritoCompleto(objetoCarrito){
         
     });
 
-    
-
 }
 
 function renderLineaCarrito(producto,i,q) {
@@ -154,10 +152,7 @@ function EliminaUnaUnidad(prod){
     let indiceAEliminar = compraEnStorage.indexOf(prod);
 
     if(indiceAEliminar != -1){
-    compraEnStorage.splice(compraEnStorage.indexOf(prod),1);
-    console.log("carro con eliminacion "+compraEnStorage);
-    } else {
-    console.log("No se eliminó ningún elemento "+compraEnStorage);
+        compraEnStorage.splice(compraEnStorage.indexOf(prod),1);
     }
 
     localStorage.setItem('compra',JSON.stringify(compraEnStorage));
@@ -202,7 +197,7 @@ function compraCarrito() {
         let btnCompra = document.createElement('button');
         btnCompra.innerText = "Comprar";
         btnCompra.className = 'inputForm btnCompra';
-        btnCompra.onclick = comprarCarrito;
+        btnCompra.onclick = pagaCarrito;
 
         formulario.appendChild(btnCerrar);
 
@@ -212,13 +207,13 @@ function compraCarrito() {
             '<div class="campo">'+
                 '<div class="label">Número de Tarjeta</div>'+
                 '<div class="valor">'+
-                    '<input class="inputForm numTarj" type="text" id="tarjeta">'+
+                    '<input class="inputForm numTarj" type="text" id="tarjeta" value="4545 1212 7878 5656">'+
                 '</div>'+
             '</div>'+
             '<div class="campo">'+
                 '<div class="label">Vencimiento (MM/YY)</div>'+
                 '<div class="valor">'+
-                    '<input class="inputForm venc" type="text" id="venc">'+
+                    '<input class="inputForm venc" type="text" id="venc" value="03/28">'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -227,13 +222,13 @@ function compraCarrito() {
             '<div class="campo">'+
                 '<div class="label">CVV</div>'+
                 '<div class="valor">'+
-                    '<input class="inputForm venc" type="text" id="CVV">'+
+                    '<input class="inputForm venc" type="text" id="CVV" value="214">'+
                 '</div>'+
             '</div>'+
             '<div class="campo">'+
                 '<div class="label">Titular</div>'+
                 '<div class="valor">'+
-                    '<input class="inputForm" type="text" id="titular">'+
+                    '<input class="inputForm" type="text" id="titular" value="Juan Carlos Jimenez">'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -242,7 +237,7 @@ function compraCarrito() {
             '<div class="campo">'+
                 '<div class="label">DNI</div>'+
                 '<div class="valor">'+
-                    '<input class="inputForm DNI" type="text" id="dni">'+
+                    '<input class="inputForm DNI" type="text" id="dni" value="16877999">'+
                 '</div>'+
             '</div>'+
             
@@ -267,15 +262,8 @@ function compraCarrito() {
     
 }
 
-function encuentraProductoPorCodigo(codigo) {
-    let producto = stock.find((element)=>{
-        return element.codigo == codigo;
-    });
 
-    return producto;
-}
-
-function comprarCarrito() {
+function pagaCarrito() {
 
     let tarjeta = document.getElementById('tarjeta').value;
     let venc = document.getElementById('venc').value;
@@ -297,12 +285,18 @@ function comprarCarrito() {
 
             Swal.fire({
                 title: "¡Felicidades, realizaste la compra con éxito!",
-                text: "Medio truchos los datos, pero bue... dejalo así 😁",
+                text: "Gracias Mona! 😁",
                 icon: "success"
               });
 
+              document.getElementById('lista').innerHTML = '';
+              document.getElementById('searcher').value = '';
+              document.getElementById('modelSelect').style.display = 'none';
+
               limpiaCarrito();
               ocultaModal();
+              
+
 
           });
 

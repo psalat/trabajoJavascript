@@ -39,7 +39,10 @@ document.getElementById('modelSelect').addEventListener("change", ()=> {
         mostrarResultados(itemsEncontrados);
     })
     .catch(error => {
-        console.error('Hubo un problema con la solicitud fetch:', error);
+        Swal.fire({
+            title: `Hubo un problema con la solicitud, probá más tarde`,
+            icon: "error"
+          })
     });
 
     
@@ -58,6 +61,8 @@ function buscaMarca() {
     let busqueda = document.getElementById('searcher').value;
 
     let select = document.getElementById('modelSelect');
+
+    document.getElementById('lista').innerHTML = '';
 
     busqueda = busqueda.toLowerCase();
 
@@ -116,14 +121,13 @@ function buscaMarca() {
                 });
                 
                 select.focus();
-                
-
-
-
 
             })
             .catch(error => {
-                console.error('Hubo un problema con la solicitud fetch:', error);
+                Swal.fire({
+                    title: `Hubo un problema con la solicitud, probá más tarde`,
+                    icon: "error"
+                  })
             });
             break;
 
@@ -173,11 +177,11 @@ function mostrarResultados(arrayProductos) {
                             <div>${element.tipo} ${element.marca} ${element.modelo}</div>
                         </div>
                     </div>
-                    <div class='itemImagen' id=itemImagen${element.codigo} onclick=agrandarImagen(${element.codigo})><div>
-                        <img src='images/productos/${element.codigo}.png' width='80px'></div>
+                    <div class='itemImagen' id=itemImagen${element.codigo} onclick=agrandarImagen(${element.codigo})>
+                        <img src='images/productos/${element.codigo}.png' width='80px'>
                     </div>
                     <div class='controles'>
-                        <button class='AgregaACarrito' id='btnAAC${element.codigo}' onclick='agregaACarrito(${element.codigo})'>Agregar al carrito</button>
+                        <button class='AgregaACarrito' id='btnAAC${element.codigo}' onclick='agregaACarrito(${element.codigo})'><img src="images/masCarro.png" height="30px"></button>
                     </div>
         `;
 
@@ -267,7 +271,7 @@ function modificaLayOut() {
     let listaCarrito = document.getElementById('listaCarrito');
 
     let envista = listaCarrito.getAttribute('envista');
-    console.log(envista);
+
     if(envista == 1){
         listaCarrito.setAttribute('envista',0);
         document.querySelector('body').style.gridTemplateAreas = `

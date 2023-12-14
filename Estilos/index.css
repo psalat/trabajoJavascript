@@ -20,9 +20,7 @@ body {
     padding-left: 120px;
     align-items: center;
     border-bottom: dotted 1px var(--salmon);
-
     grid-area: hLogo;
-    /* background-color: brown; */
 }
 
 
@@ -33,9 +31,6 @@ body {
     align-items: center;
     justify-content: center;
     border-bottom: dotted 1px var(--salmon);
-    
-
-    /* background-color: darkslategrey; */
 }
 
 .c3 {
@@ -57,7 +52,6 @@ body {
 
 .cantidad {
     margin-left: 3px;
-    /* background-color: red; */
     padding: 2px;
     color:crimson;
     border-radius: 3px;
@@ -66,7 +60,6 @@ body {
 
 
 .listaCarrito {
-    /* background-color: black; */
     grid-area: listaCarrito;
     overflow: auto;
 }
@@ -76,7 +69,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* background-color: green; */
     grid-area: searcher;
 }
 
@@ -93,7 +85,6 @@ body {
 
 .searcher {
     width: 450px;
-    /* min-width: 300px; */
     height: 50px;
     font-size: 30px;
     text-align: center;
@@ -126,10 +117,8 @@ body {
 
 .modelSelect {
     width: 515px;
-    /* min-width: 365px; */
     height: 40px;
     font-size: 20px;
-    /* text-align: center; */
     color: var(--salmon);
     background-color: var(--grisClaro);
     border-radius: 4px;
@@ -163,12 +152,14 @@ body {
 .itemDeStock {
     color: rgb(80,80,80);
     margin: 5px;
-    border: solid 1px var(--salmon);
-    border-radius: 4px;
-    width: 50%;
+    border-bottom: dotted 1px var(--salmon);
+    width: 45%;
+    min-width: 500px;
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 8px 8px 8px gray;
 }
 
 .codigo {
@@ -189,7 +180,6 @@ body {
 
 .itemImagen {
     margin-left: 50px;
-    /* background-color: blue; */
     height: 50px;
     width: 80px;
     display: flex;
@@ -212,21 +202,23 @@ body {
 
 .AgregaACarrito {
     height: 50px;
+    width: 50px;
     border: none;
     margin-left: 5px;
     border-radius: 4px;
     cursor: pointer;
+    background-color: var(--salmon);
+    box-shadow: 8px 8px 8px gray;
 }
 
 .AgregaACarrito:hover {
-    background-color: var(--salmon);
+    background-color: rgba(150,150,150);
 }
 
 .listaCarrito {
     padding: 6px;
     border-left: dotted 1px grey;
     grid-area: listaCarrito;
-    /* background-color: hotpink; */
     background-color: var(--fondo2);
 }
 

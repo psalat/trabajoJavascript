@@ -1,3 +1,12 @@
+const marcas = [
+    ['Fiat', 'fiat', 'fia','fia', 'diat','giat'],
+    ['Renault','renault','ren','renol','reno','renaut','renaul','renau'],
+    ['Volkswagen','volkswagen','volfagen','voluagen','volswagen','volkswaguen','volk','volks'],
+    ['Chevrolet','chevrolet','chebrolet','chevrole','chev'],
+    ['Ford','ford','for'],
+    ['Honda','honda','onda',]
+];
+
 let marcaElegida = '';
 
 let modeloElegido = '';
@@ -52,9 +61,6 @@ document.getElementById('modelSelect').addEventListener("change", ()=> {
 document.getElementById('carrito').addEventListener('click',()=>{
     modificaLayOut();
 });
-
-document.getElementById('modal').addEventListener('click',ocultaModal);
-
 
 
 function buscaMarca() {
@@ -228,6 +234,7 @@ function agrandarImagen(codigo){
     let modalImagen = document.getElementById('modal');
     modalImagen.style.display = 'flex';
     modalImagen.innerHTML = imagen;
+    document.getElementById('modal').addEventListener('click',ocultaModal);
 }
 
 function resumenDeCarrito(arrayElementos) {
